@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Colores primarios - Verde orgánico */
+  --color-primary: 74 124 89;
+  --color-primary-light: 107 159 123;
+  
+  /* Colores secundarios - Tierra/marrón */
+  --color-secondary: 139 111 71;
+  --color-secondary-light: 160 130 109;
+  
+  /* Acento - Amarillo maíz */
+  --color-accent: 244 196 48;
+  
+  /* Neutros */
+  --color-neutral-light: 245 241 232;
+  --color-neutral: 232 228 217;
+  
+  /* Estados */
+  --color-success: 82 183 136;
+  --color-warning: 255 159 28;
+  --color-error: 214 40 40;
+  
+  /* Fondos y textos */
+  --background: 245 241 232;
+  --foreground: 40 40 40;
+}
+
+@theme inline {
+  --color-primary-DEFAULT: rgb(var(--color-primary));
+  --color-primary-light: rgb(var(--color-primary-light));
+  --color-secondary-DEFAULT: rgb(var(--color-secondary));
+  --color-secondary-light: rgb(var(--color-secondary-light));
+  --color-accent: rgb(var(--color-accent));
+  --color-neutral-light: rgb(var(--color-neutral-light));
+  --color-neutral: rgb(var(--color-neutral));
+  --color-success: rgb(var(--color-success));
+  --color-warning: rgb(var(--color-warning));
+  --color-error: rgb(var(--color-error));
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+}
+
+body {
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
