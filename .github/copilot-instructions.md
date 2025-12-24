@@ -278,6 +278,12 @@ import {
 
 ## Extensiones Futuras Sugeridas
 
+- [x] Aumento de fuente base a 16px (accesibilidad)
+- [x] Mejora de contraste de colores (WCAG)
+- [x] Navegación por teclado mejorada (focus-visible)
+- [x] Aumento de tamaño de botones (min 44x44px táctil)
+- [x] Tooltips contextuales en elementos de interfaz
+- [x] Simplificación de formularios con mensajes de ayuda
 - [ ] Integración real con backend (API routes)
 - [ ] Autenticación de usuarios
 - [ ] Pasarela de pago Webpay real
@@ -312,9 +318,12 @@ npm run lint
 - **Estados globales**: No se usa context/store, todo es local por simplicidad
 - **Backend**: No implementado, datos son estáticos en cada página
 - **Imágenes**: Emojis como placeholder, fácil reemplazar con imágenes reales
+- **Accesibilidad**: Cumple con WCAG 2.1 - fuente base 16px, contraste mejorado, navegación por teclado
+- **Tooltips**: Componente Tooltip disponible para ayuda contextual
+- **Skip link**: Navegación por teclado con link de salto al contenido principal
 
 ---
 
-**Última actualización**: 2 de diciembre de 2025
-**Versión**: 1.0.0
+**Última actualización**: 23 de diciembre de 2025
+**Versión**: 1.1.0
 **Autor**: HuertoApp Team

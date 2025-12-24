@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert } from "@/components/ui/alert";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
@@ -49,7 +50,7 @@ export default function CarritoPage() {
         <h1 className="mb-2 font-serif text-4xl font-bold text-[rgb(var(--color-primary))]">
           Carro de Compras
         </h1>
-        <p className="text-lg text-[rgb(var(--foreground))]/70">
+        <p className="text-lg text-[rgb(var(--foreground))]/80">
           Revisa tu pedido antes de finalizar
         </p>
       </div>
@@ -67,12 +68,12 @@ export default function CarritoPage() {
       {cartItems.length === 0 ? (
         /* Empty Cart */
         <Card className="py-16 text-center">
-          <ShoppingCart className="mx-auto mb-4 h-16 w-16 text-[rgb(var(--color-neutral))]" />
+          <ShoppingCart className="mx-auto mb-4 h-16 w-16 text-[rgb(var(--color-neutral))]" aria-hidden="true" />
           <h2 className="mb-2 font-serif text-2xl font-bold text-[rgb(var(--foreground))]">
             Tu carro está vacío
           </h2>
-          <p className="mb-6 text-[rgb(var(--foreground))]/70">
-            Agrega productos desde la tienda
+          <p className="mb-6 text-[rgb(var(--foreground))]/80">
+            Agrega productos desde la tienda para comenzar
           </p>
           <Link href="/tienda">
             <Button>Ir a la Tienda</Button>
@@ -81,13 +82,13 @@ export default function CarritoPage() {
       ) : (
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Cart Items */}
-          <div className="space-y-4 lg:col-span-2">
+          <section className="space-y-4 lg:col-span-2" aria-label="Productos en el carro">
             {cartItems.map((item) => (
               <Card key={item.id}>
                 <CardContent className="flex items-center gap-4 p-4">
                   {/* Image */}
                   <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-lg bg-[rgb(var(--color-neutral))]">
-                    <span className="text-3xl">{item.image}</span>
+                    <span className="text-3xl" aria-hidden="true">{item.image}</span>
                   </div>
 
                   {/* Details */}
@@ -101,59 +102,70 @@ export default function CarritoPage() {
                   </div>
 
                   {/* Quantity Controls */}
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => updateQuantity(item.id, -1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg bg-[rgb(var(--color-neutral))] transition-colors hover:bg-[rgb(var(--color-primary))] hover:text-white"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </button>
-                    <span className="w-8 text-center font-medium">
+                  <div className="flex items-center gap-2" aria-label={`Cantidad de ${item.name}`}>
+                    <Tooltip content="Reducir cantidad">
+                      <button
+                        onClick={() => updateQuantity(item.id, -1)}
+                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-[rgb(var(--color-neutral))] transition-colors hover:bg-[rgb(var(--color-primary))] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary))]"
+                        aria-label={`Reducir cantidad de ${item.name}`}
+                      >
+                        <Minus className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </Tooltip>
+                    <span className="w-8 text-center font-medium text-lg" aria-live="polite">
                       {item.quantity}
                     </span>
-                    <button
-                      onClick={() => updateQuantity(item.id, 1)}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg bg-[rgb(var(--color-neutral))] transition-colors hover:bg-[rgb(var(--color-primary))] hover:text-white"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </button>
+                    <Tooltip content="Aumentar cantidad">
+                      <button
+                        onClick={() => updateQuantity(item.id, 1)}
+                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-[rgb(var(--color-neutral))] transition-colors hover:bg-[rgb(var(--color-primary))] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary))]"
+                        aria-label={`Aumentar cantidad de ${item.name}`}
+                      >
+                        <Plus className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </Tooltip>
                   </div>
 
                   {/* Remove Button */}
-                  <button
-                    onClick={() => removeItem(item.id)}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg text-[rgb(var(--color-error))] transition-colors hover:bg-red-50"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+                  <Tooltip content="Eliminar del carro">
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="flex h-10 w-10 items-center justify-center rounded-lg text-[rgb(var(--color-error))] transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-error))]"
+                      aria-label={`Eliminar ${item.name} del carro`}
+                    >
+                      <Trash2 className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </Tooltip>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </section>
 
           {/* Summary */}
-          <div className="lg:col-span-1">
+          <aside className="lg:col-span-1" aria-label="Resumen del pedido">
             <Card className="sticky top-20">
               <CardHeader>
                 <CardTitle>Resumen del Pedido</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Items */}
-                {cartItems.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <span className="text-[rgb(var(--foreground))]/70">
-                      {item.name} × {item.quantity}
-                    </span>
-                    <span className="font-medium">
-                      ${(item.price * item.quantity).toLocaleString()}
-                    </span>
-                  </div>
-                ))}
+                <ul className="space-y-2">
+                  {cartItems.map((item) => (
+                    <li key={item.id} className="flex justify-between text-base">
+                      <span className="text-[rgb(var(--foreground))]/80">
+                        {item.name} × {item.quantity}
+                      </span>
+                      <span className="font-medium">
+                        ${(item.price * item.quantity).toLocaleString()}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
 
                 <div className="border-t border-[rgb(var(--color-neutral))] pt-4">
                   <div className="flex justify-between">
                     <span className="font-serif text-lg font-bold">Total</span>
-                    <span className="font-serif text-2xl font-bold text-[rgb(var(--color-primary))]">
+                    <span className="font-serif text-2xl font-bold text-[rgb(var(--color-primary))]" aria-live="polite">
                       ${total.toLocaleString()}
                     </span>
                   </div>
@@ -167,14 +179,14 @@ export default function CarritoPage() {
                   Pagar con Webpay
                 </Button>
 
-                <Link href="/tienda">
+                <Link href="/tienda" className="block">
                   <Button variant="ghost" className="w-full">
                     Seguir Comprando
                   </Button>
                 </Link>
               </CardContent>
             </Card>
-          </div>
+          </aside>
         </div>
       )}
     </div>

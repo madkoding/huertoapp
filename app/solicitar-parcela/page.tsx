@@ -182,27 +182,31 @@ export default function SolicitarParcelaPage() {
         <h1 className="mb-2 font-serif text-4xl font-bold text-[rgb(var(--color-primary))]">
           Solicitud de Parcela
         </h1>
-        <p className="text-lg text-[rgb(var(--foreground))]/70">
+        <p className="text-lg text-[rgb(var(--foreground))]/80">
           Completa el formulario para unirte al huerto comunitario
+        </p>
+        <p className="mt-2 text-sm text-[rgb(var(--foreground))]/60">
+          Solo tomará unos 3 minutos. Los campos marcados con (*) son obligatorios.
         </p>
       </div>
 
       {/* Progress Indicator */}
-      <div className="mb-8">
+      <div className="mb-8" aria-label={`Paso ${currentStep} de 3`}>
         <div className="flex items-center justify-between">
           {[1, 2, 3].map((step) => (
             <div key={step} className="flex flex-1 items-center">
               <div className="flex flex-col items-center">
                 <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-full font-bold transition-colors ${
+                  className={`flex h-12 w-12 items-center justify-center rounded-full font-bold transition-colors text-lg ${
                     step <= currentStep
                       ? "bg-[rgb(var(--color-primary))] text-white"
                       : "bg-[rgb(var(--color-neutral))] text-[rgb(var(--foreground))]/50"
                   }`}
+                  aria-current={step === currentStep ? "step" : undefined}
                 >
                   {step}
                 </div>
-                <span className="mt-2 text-xs font-medium">
+                <span className="mt-2 text-sm font-medium">
                   {step === 1 && "Datos"}
                   {step === 2 && "Experiencia"}
                   {step === 3 && "Motivación"}
@@ -215,6 +219,7 @@ export default function SolicitarParcelaPage() {
                       ? "bg-[rgb(var(--color-primary))]"
                       : "bg-[rgb(var(--color-neutral))]"
                   }`}
+                  aria-hidden="true"
                 />
               )}
             </div>
@@ -230,24 +235,32 @@ export default function SolicitarParcelaPage() {
             {currentStep === 2 && "Experiencia Previa"}
             {currentStep === 3 && "Motivación y Compromisos"}
           </CardTitle>
+          <p className="text-sm text-[rgb(var(--foreground))]/70 mt-2">
+            {currentStep === 1 && "Necesitamos tus datos para contactarte sobre tu solicitud"}
+            {currentStep === 2 && "Cuéntanos sobre tu experiencia para asignarte la parcela ideal"}
+            {currentStep === 3 && "Comparte tu motivación para formar parte de la comunidad"}
+          </p>
         </CardHeader>
         <CardContent>
           {/* Step 1: Datos Personales */}
           {currentStep === 1 && (
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label htmlFor="nombre" className="mb-2 block text-sm font-medium">
+                <label htmlFor="nombre" className="mb-2 block text-base font-medium">
                   Nombre Completo *
                 </label>
+                <p className="text-sm text-[rgb(var(--foreground))]/60 mb-2">
+                  Ingresa tu nombre tal como aparece en tu documento de identidad
+                </p>
                 <input
                   id="nombre"
                   type="text"
                   value={formData.nombre}
                   onChange={(e) => updateFormData("nombre", e.target.value)}
-                  className={`w-full rounded-lg border px-4 py-2 focus:outline-none ${
+                  className={`w-full rounded-lg border px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-offset-1 ${
                     fieldErrors.nombre 
-                      ? 'border-[rgb(var(--color-error))] focus:border-[rgb(var(--color-error))]' 
-                      : 'border-[rgb(var(--color-neutral))] focus:border-[rgb(var(--color-primary))]'
+                      ? 'border-[rgb(var(--color-error))] focus:ring-[rgb(var(--color-error))]' 
+                      : 'border-[rgb(var(--color-neutral))] focus:ring-[rgb(var(--color-primary))]'
                   }`}
                   placeholder="Juan Pérez González"
                   aria-invalid={!!fieldErrors.nombre}

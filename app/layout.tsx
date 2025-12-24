@@ -15,8 +15,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="antialiased">
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido principal
+        </a>
         <Navbar />
-        <main className="min-h-screen">
+        <main id="main-content" className="min-h-screen" tabIndex={-1}>
           {children}
         </main>
       </body>

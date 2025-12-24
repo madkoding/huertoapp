@@ -71,27 +71,27 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen bg-[rgb(var(--color-neutral-light))]">
       {/* Sidebar */}
-      <aside className="hidden w-64 border-r border-[rgb(var(--color-neutral))] bg-white p-6 lg:block">
+      <aside className="hidden w-64 border-r border-[rgb(var(--color-neutral))] bg-white p-6 lg:block" aria-label="Panel de navegación">
         <h2 className="mb-6 font-serif text-xl font-bold text-[rgb(var(--color-primary))]">
           Panel de Gestor
         </h2>
-        <nav className="space-y-2">
-          <a href="#" className="flex items-center gap-3 rounded-lg bg-[rgb(var(--color-primary))] px-4 py-2 text-white">
-            <LayoutGrid className="h-5 w-5" />
+        <nav className="space-y-2" aria-label="Menú del panel">
+          <button className="flex w-full items-center gap-3 rounded-lg bg-[rgb(var(--color-primary))] px-4 py-3 text-white font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[rgb(var(--color-primary))]">
+            <LayoutGrid className="h-5 w-5" aria-hidden="true" />
             Parcelas
-          </a>
-          <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-2 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))]">
-            <Droplets className="h-5 w-5" />
+          </button>
+          <button className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary))]">
+            <Droplets className="h-5 w-5" aria-hidden="true" />
             Registro de Riego
-          </a>
-          <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-2 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))]">
-            <Sun className="h-5 w-5" />
+          </button>
+          <button className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary))]">
+            <Sun className="h-5 w-5" aria-hidden="true" />
             Condiciones
-          </a>
-          <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-2 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))]">
-            <TrendingUp className="h-5 w-5" />
+          </button>
+          <button className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-[rgb(var(--foreground))] transition-colors hover:bg-[rgb(var(--color-neutral))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary))]">
+            <TrendingUp className="h-5 w-5" aria-hidden="true" />
             Reportes
-          </a>
+          </button>
         </nav>
       </aside>
 
