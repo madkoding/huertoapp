@@ -235,3 +235,6 @@ Este proyecto fue creado para fines educativos y demostrativos.
 **Versión**: 1.0.0  
 **Fecha**: 2 de diciembre de 2025  
 **Stack**: Next.js 15 + TypeScript + Tailwind CSS
+
+<!-- AUTO-UPDATE-DATE -->
+**Última actualización:** 2026-02-18 17:30:21 -03
