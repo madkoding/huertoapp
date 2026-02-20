@@ -237,4 +237,4 @@ Este proyecto fue creado para fines educativos y demostrativos.
 **Stack**: Next.js 15 + TypeScript + Tailwind CSS
 
 <!-- AUTO-UPDATE-DATE -->
-**Última actualización:** 2026-02-20 09:12:52 -03
+**Última actualización:** 2026-02-20 10:27:27 -03
